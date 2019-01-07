@@ -19,7 +19,7 @@ pipeline {
     stage('archive') {
       steps {
         archiveArtifacts(artifacts: '**/*.apk', fingerprint: true)
-        junit(testResults: 'build/reports/*.xml', allowEmptyResults: true)
+        junit(testResults: '**/*.xml', allowEmptyResults: true)
       }
     }
   }
