@@ -20,12 +20,12 @@ pipeline {
     stage('device test') {
       steps {
         sh '''gcloud firebase test android run firebase-test-matrix.yml:nexus5-device
---app **/app-mock-debug.apk
---test **/app-mock-debug-androidTest.apk
+--app app-mock-debug.apk
+--test app-mock-debug-androidTest.apk
 --project digioci
 gcloud firebase test android run firebase-test-matrix.yml:lgG4-device
---app **/app-mock-debug.apk
---test **/app-mock-debug-androidTest.apk
+--app app-mock-debug.apk
+--test app-mock-debug-androidTest.apk
 --project digioci'''
       }
     }
