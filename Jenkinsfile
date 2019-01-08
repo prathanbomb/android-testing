@@ -17,6 +17,17 @@ pipeline {
         junit(testResults: '**/*.xml', allowEmptyResults: true)
       }
     }
+    stage('device test') {
+      steps {
+        sh '''gcloud beta test android run firebase-test-matrix.yml:nexus5-device --app app/build/outputs/apk/app-debug.apk
+--test app/build/outputs/apk/androidTest/mock/debug/app-mock-debug-androidTest.apk
+--project DigioCI
+gcloud beta test android run firebase-test-matrix.yml:lgG4-device
+--app app/build/outputs/apk/app-debug.apk
+--test app/build/outputs/apk/androidTest/mock/debug/app-mock-debug-androidTest.apk
+--project DigioCI'''
+      }
+    }
   }
   post {
     failure {
