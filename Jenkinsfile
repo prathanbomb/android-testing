@@ -19,14 +19,8 @@ pipeline {
     }
     stage('device test') {
       steps {
-        sh '''gcloud firebase test android run firebase-test-matrix.yml:nexus5-device
---app app-mock-debug.apk
---test app-mock-debug-androidTest.apk
---project digioci
-gcloud firebase test android run firebase-test-matrix.yml:lgG4-device
---app app-mock-debug.apk
---test app-mock-debug-androidTest.apk
---project digioci'''
+        sh '''gcloud firebase test android run firebase-test-matrix.yml:nexus5-device --app app/build/outputs/apk/mock/debug/app-mock-debug.apk --test app/build/outputs/apk/androidTest/mock/debug/app-mock-debug-androidTest.apk --project digioci
+gcloud firebase test android run firebase-test-matrix.yml:lgG4-device --app app/build/outputs/apk/mock/debug/app-mock-debug.apk --test app/build/outputs/apk/androidTest/mock/debug/app-mock-debug-androidTest.apk --project digioci'''
       }
     }
   }
