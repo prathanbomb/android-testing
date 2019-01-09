@@ -1,6 +1,14 @@
-Pixel2-device:
+instrumentation-test:
   type: instrumentation
   timeout: 10m
   device-ids: Pixel2
   os-version-ids: [26, 27, 28]
   locales: en
+
+robo-test:
+  type: robo
+  max-steps: 100
+  timeout: 10m
+  device-ids: Pixel2
+  os-version-ids: [26, 27, 28]
+  async: true
