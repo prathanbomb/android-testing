@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        sh './gradlew clean assembleRelease assembleAndroidTest'
+        sh './gradlew clean assemble assembleAndroidTest'
       }
     }
     stage('test') {
@@ -19,7 +19,7 @@ pipeline {
     }
     stage('test lab') {
       steps {
-        sh 'gcloud firebase test android run firebase-test-matrix.yml:Pixel2-device --app app/build/outputs/apk/prod/release/app-prod-release-unsigned.apk --test app/build/outputs/apk/androidTest/prod/debug/app-prod-debug-androidTest.apk --project digioci'
+        sh 'gcloud firebase test android run firebase-test-matrix.yml:Pixel2-device --app app/build/outputs/apk/prod/debug/app-prod-debug.apk --test app/build/outputs/apk/androidTest/prod/debug/app-prod-debug-androidTest.apk --project digioci'
       }
     }
     stage('sign app') {
