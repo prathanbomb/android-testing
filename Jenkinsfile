@@ -19,7 +19,8 @@ pipeline {
     }
     stage('test lab') {
       steps {
-        sh 'gcloud firebase test android run firebase-test-matrix.yml:Pixel2-device --app app/build/outputs/apk/mock/debug/app-mock-debug.apk --test app/build/outputs/apk/androidTest/mock/debug/app-mock-debug-androidTest.apk --project digioci'
+        sh 'gcloud firebase test android run firebase-test-matrix.yml:instrumentation-test --app app/build/outputs/apk/mock/debug/app-mock-debug.apk --test app/build/outputs/apk/androidTest/mock/debug/app-mock-debug-androidTest.apk --project digioci'
+        sh 'gcloud firebase test android run firebase-test-matrix.yml:robo-test --app app/build/outputs/apk/prod/release/app-prod-release.apk --project digioci'
       }
     }
     stage('publish apk') {
