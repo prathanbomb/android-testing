@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        sh './gradlew clean assembleDebug assembleAndroidTest'
+        sh './gradlew clean assembleRelease assembleAndroidTest'
       }
     }
     stage('test') {
@@ -19,8 +19,11 @@ pipeline {
     }
     stage('test lab') {
       steps {
-        sh 'gcloud firebase test android run firebase-test-matrix.yml:Pixel2-device --app app/build/outputs/apk/mock/debug/app-mock-debug.apk --test app/build/outputs/apk/androidTest/mock/debug/app-mock-debug-androidTest.apk --project digioci'
+        sh 'gcloud firebase test android run firebase-test-matrix.yml:Pixel2-device --app app/build/outputs/apk/prod/release/app-prod-release-unsigned.apk --test app/build/outputs/apk/androidTest/prod/debug/app-prod-debug-androidTest.apk --project digioci'
       }
+    }
+    stage('sign app') {
+      step([$class: 'SignApksBuilder', apksToSign: '**/app-prod-release-unsigned.apk', keyAlias: '', keyStoreId: '4bb89ae2-f0c3-4ae5-8680-1bc5f8bb0e20'])
     }
   }
   post {
