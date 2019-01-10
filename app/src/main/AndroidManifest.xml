@@ -38,6 +38,11 @@
         <activity android:name=".notedetail.NoteDetailActivity" />
         <activity android:name=".addnote.AddNoteActivity" />
         <activity android:name=".statistics.StatisticsActivity" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="cd378e76d087b36f63137b3ff768d2ddb6b65b56" />
     </application>
 
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

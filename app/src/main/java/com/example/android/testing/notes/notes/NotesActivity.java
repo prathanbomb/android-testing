@@ -16,10 +16,6 @@
 
 package com.example.android.testing.notes.notes;
 
-import com.example.android.testing.notes.R;
-import com.example.android.testing.notes.statistics.StatisticsActivity;
-import com.example.android.testing.notes.util.EspressoIdlingResource;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.VisibleForTesting;
@@ -35,6 +31,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.crashlytics.android.Crashlytics;
+import com.example.android.testing.notes.R;
+import com.example.android.testing.notes.statistics.StatisticsActivity;
+import com.example.android.testing.notes.util.EspressoIdlingResource;
+
+import io.fabric.sdk.android.Fabric;
+
 public class NotesActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
@@ -42,6 +45,7 @@ public class NotesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_notes);
 
 
