@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        sh './gradlew clean assembled assembleAndroidTest'
+        sh './gradlew clean assemble assembleAndroidTest'
       }
     }
     stage('test') {
